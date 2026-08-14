@@ -18,28 +18,30 @@ export default function Home() {
   });
 
   return (
-    <main className="w-full bg-black overflow-hidden">
+    <main className="w-full bg-black">
       <section
         id="home"
         className="relative w-full overflow-hidden bg-black"
-        style={{
-          height: "100svh",
-          minHeight: "100svh",
-        }}
       >
-        {/* HERO IMAGE */}
-        <img
-          src="/paan-wala-hero.png"
-          alt="Paan Ki Dukaan"
-          className="absolute left-1/2 top-1/2 w-full h-auto max-h-full -translate-x-1/2 -translate-y-1/2 object-contain"
-        />
+        {/* RESPONSIVE HERO IMAGE */}
+        <picture className="block w-full">
+          {/* PHONE: 9:16 portrait image */}
+          <source
+            media="(max-width: 767px)"
+            srcSet="/paan-wala-mobile.png"
+          />
 
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+          {/* LAPTOP / DESKTOP: original wide image */}
+          <img
+            src="/paan-wala-hero.png"
+            alt="Paan Ki Dukaan"
+            className="block w-full h-auto"
+          />
+        </picture>
 
         {/* LIVE TIME */}
         <div
-          className="absolute top-6 left-8 z-[9999]"
+          className="absolute top-6 left-6 sm:left-8 z-[9999]"
           style={{
             color: "#f1e4c8",
             fontSize: "14px",
@@ -52,7 +54,7 @@ export default function Home() {
         </div>
 
         {/* BOTTOM GRADIENT */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
       </section>
     </main>
   );
