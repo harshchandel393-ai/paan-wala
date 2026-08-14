@@ -31,7 +31,7 @@ export default function Home() {
         <img
           src="/paan-wala-hero.png"
           alt="Paan Ki Dukaan"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute left-1/2 top-1/2 w-full h-auto max-h-full -translate-x-1/2 -translate-y-1/2 object-contain"
         />
 
         {/* DARK OVERLAY */}
@@ -52,7 +52,7 @@ export default function Home() {
         </div>
 
         {/* BOTTOM GRADIENT */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/70 to-transparent" />
       </section>
     </main>
   );
