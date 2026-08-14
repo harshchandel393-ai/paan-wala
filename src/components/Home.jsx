@@ -18,17 +18,14 @@ export default function Home() {
   });
 
   return (
-    <main className="w-full bg-black">
+    <main className="w-full bg-black overflow-hidden">
       <section
         id="home"
         className="relative w-full overflow-hidden bg-black"
-        style={{
-          minHeight: "100vh",
-        }}
       >
         {/* LIVE TIME */}
         <div
-          className="absolute top-6 left-8 z-[9999]"
+          className="absolute top-6 left-8 z-[9999] sm:top-6 sm:left-8"
           style={{
             color: "#f1e4c8",
             fontSize: "14px",
@@ -47,8 +44,8 @@ export default function Home() {
           className="block w-full h-auto object-contain object-top"
         />
 
-        {/* Subtle dark gradient at bottom */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
+        {/* SUBTLE DARK GRADIENT */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 sm:h-32 bg-gradient-to-t from-black/50 to-transparent" />
       </section>
     </main>
   );
