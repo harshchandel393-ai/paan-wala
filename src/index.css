@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&family=Rozha+One&family=Mukta:wght@400;500;600;700&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-night: #130A08;
+  --color-night-2: #1D1109;
+  --color-maroon: #7C2020;
+  --color-maroon-light: #9C3D2E;
+  --color-marigold: #E2891E;
+  --color-marigold-light: #F2AE4E;
+  --color-betel: #33532F;
+  --color-betel-light: #4E7346;
+  --color-cream: #F1E4C8;
+  --color-cream-dim: #D9C79E;
+  --color-brass: #C99A3B;
+
+  --font-devnag: 'Yatra One', serif;
+  --font-serif: 'Rozha One', serif;
+  --font-devbody: 'Mukta', sans-serif;
+  --font-body: 'Karla', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-night);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* ---------- Grain / film texture overlay ---------- */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1s steps(4) infinite;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0,0); }
+  25% { transform: translate(-1%, 1%); }
+  50% { transform: translate(1%, -1%); }
+  75% { transform: translate(-1%, -1%); }
+}
+
+/* ---------- Vignette ---------- */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 40%, transparent 35%, rgba(6,3,2,0.55) 85%, rgba(4,2,1,0.85) 100%);
+}
+
+/* ---------- Bulb flicker ---------- */
+@keyframes flicker {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px rgba(242,174,78,0.9)) drop-shadow(0 0 16px rgba(226,137,30,0.6)); }
+  45% { opacity: 0.86; filter: drop-shadow(0 0 4px rgba(242,174,78,0.6)) drop-shadow(0 0 10px rgba(226,137,30,0.4)); }
+  50% { opacity: 0.7; filter: drop-shadow(0 0 3px rgba(242,174,78,0.4)); }
+  55% { opacity: 0.95; filter: drop-shadow(0 0 6px rgba(242,174,78,0.9)) drop-shadow(0 0 16px rgba(226,137,30,0.6)); }
+}
+.bulb {
+  animation: flicker 3.4s ease-in-out infinite;
+}
+.bulb:nth-of-type(2n) { animation-delay: 0.6s; animation-duration: 4.1s; }
+.bulb:nth-of-type(3n) { animation-delay: 1.3s; animation-duration: 2.8s; }
+
+/* ---------- Steam / haze drift ---------- */
+@keyframes drift {
+  0% { transform: translate(0,0) scale(1); opacity: 0.25; }
+  50% { transform: translate(6px,-14px) scale(1.08); opacity: 0.4; }
+  100% { transform: translate(-4px,-28px) scale(1.15); opacity: 0; }
+}
+.haze-puff {
+  animation: drift 6s ease-in infinite;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-night); }
+::-webkit-scrollbar-thumb { background: var(--color-maroon-light); border-radius: 0; }
+
+/* ---------- Selection ---------- */
+::selection { background: var(--color-marigold); color: var(--color-night); }
+
+/* ---------- Utility classes ---------- */
+.text-outline-cream {
+  -webkit-text-stroke: 1px var(--color-cream);
+}
+
+.divider-diamond::before {
+  content: '◆';
+  color: var(--color-brass);
+  margin: 0 0.75rem;
+  font-size: 0.6rem;
+  vertical-align: middle;
+}
+
+.paper-texture {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(201,154,59,0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(124,32,32,0.08), transparent 45%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}

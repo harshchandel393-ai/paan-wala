@@ -1,0 +1,55 @@
+import React, { useEffect, useState } from "react";
+
+export default function Home() {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const liveTime = currentTime.toLocaleTimeString("en-IN", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  return (
+    <main className="w-full bg-black">
+      <section
+        id="home"
+        className="relative w-full overflow-hidden bg-black"
+        style={{
+          minHeight: "100vh",
+        }}
+      >
+        {/* LIVE TIME */}
+        <div
+          className="absolute top-6 left-8 z-[9999]"
+          style={{
+            color: "#f1e4c8",
+            fontSize: "14px",
+            letterSpacing: "0.12em",
+            textShadow: "0 2px 10px rgba(0,0,0,0.8)",
+            pointerEvents: "none",
+          }}
+        >
+          {liveTime}
+        </div>
+
+        {/* HERO IMAGE */}
+        <img
+          src="/paan-wala-hero.png"
+          alt="Paan Ki Dukaan"
+          className="block w-full h-auto object-contain object-top"
+        />
+
+        {/* Subtle dark gradient at bottom */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
+      </section>
+    </main>
+  );
+}
