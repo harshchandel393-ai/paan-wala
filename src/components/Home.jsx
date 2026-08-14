@@ -22,10 +22,24 @@ export default function Home() {
       <section
         id="home"
         className="relative w-full overflow-hidden bg-black"
+        style={{
+          height: "100svh",
+          minHeight: "100svh",
+        }}
       >
+        {/* HERO IMAGE */}
+        <img
+          src="/paan-wala-hero.png"
+          alt="Paan Ki Dukaan"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+
+        {/* DARK OVERLAY */}
+        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+
         {/* LIVE TIME */}
         <div
-          className="absolute top-6 left-8 z-[9999] sm:top-6 sm:left-8"
+          className="absolute top-6 left-8 z-[9999]"
           style={{
             color: "#f1e4c8",
             fontSize: "14px",
@@ -37,15 +51,8 @@ export default function Home() {
           {liveTime}
         </div>
 
-        {/* HERO IMAGE */}
-        <img
-          src="/paan-wala-hero.png"
-          alt="Paan Ki Dukaan"
-          className="block w-full h-auto object-contain object-top"
-        />
-
-        {/* SUBTLE DARK GRADIENT */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 sm:h-32 bg-gradient-to-t from-black/50 to-transparent" />
+        {/* BOTTOM GRADIENT */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent" />
       </section>
     </main>
   );
