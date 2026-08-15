@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { playlists } from "../data/songsData";
 
 export default function PlaylistPage({ onSongSelect }) {
   const { playlistId } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "instant",
+  });
+}, []);
 
   const playlist = playlists.find(
     (item) => item.id === playlistId

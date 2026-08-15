@@ -6,7 +6,9 @@ import { brand } from "../data/content";
 export default function Hero() {
   const ref = useRef(null);
 
-  // Live clock
+  // =========================
+  // LIVE CLOCK
+  // =========================
   const [currentTime, setCurrentTime] = useState(() => new Date());
 
   useEffect(() => {
@@ -27,21 +29,67 @@ export default function Hero() {
     hour12: true,
   });
 
+  // =========================
+  // PARALLAX
+  // =========================
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  const yFar = useTransform(scrollYProgress, [0, 1], [0, 40]);
-  const yMid = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const yBulbs = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const yBike = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const ySign = useTransform(scrollYProgress, [0, 1], [0, 110]);
-  const ySeller = useTransform(scrollYProgress, [0, 1], [0, 170]);
-  const yCounter = useTransform(scrollYProgress, [0, 1], [0, 210]);
+  const yFar = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 40]
+  );
 
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const yMid = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 90]
+  );
+
+  const yBulbs = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 120]
+  );
+
+  const yBike = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 150]
+  );
+
+  const ySign = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 110]
+  );
+
+  const ySeller = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 170]
+  );
+
+  const yCounter = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 210]
+  );
+
+  const titleY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, -60]
+  );
+
+  const titleOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.7],
+    [1, 0]
+  );
 
   return (
     <>
@@ -59,7 +107,8 @@ export default function Hero() {
           fontFamily: "inherit",
           fontWeight: "400",
           letterSpacing: "0.12em",
-          textShadow: "0 2px 12px rgba(0, 0, 0, 0.9)",
+          textShadow:
+            "0 2px 12px rgba(0, 0, 0, 0.9)",
           pointerEvents: "none",
           display: "block",
           visibility: "visible",
@@ -76,6 +125,7 @@ export default function Hero() {
         ref={ref}
         className="relative h-[100vh] w-full overflow-hidden bg-night"
       >
+        {/* SCENE */}
         <SceneIllustration
           yFar={yFar}
           yMid={yMid}
@@ -88,59 +138,119 @@ export default function Hero() {
 
         <div className="vignette" />
 
-        {/* Center hero typography */}
+        {/* =========================
+            CENTER HERO TYPOGRAPHY
+            ========================= */}
         <motion.div
-          style={{ y: titleY, opacity: titleOpacity }}
+          style={{
+            y: titleY,
+            opacity: titleOpacity,
+          }}
           className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center"
         >
+          {/* ESTABLISHED / HOURS */}
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            initial={{
+              opacity: 0,
+              y: 10,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 1,
+              delay: 0.2,
+            }}
             className="mb-3 font-body text-[0.7rem] uppercase tracking-[0.35em] text-cream-dim"
           >
             {brand.established}
-            <span className="mx-2 text-brass">•</span>
+
+            <span className="mx-2 text-brass">
+              •
+            </span>
+
             {brand.hours}
           </motion.p>
 
+          {/* MAIN TITLE */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 1.1,
               delay: 0.35,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="font-devnag leading-[0.95] text-cream drop-shadow-[0_6px_30px_rgba(226,137,30,0.35)]"
-            style={{ fontSize: "clamp(4.5rem, 16vw, 11rem)" }}
+            style={{
+              fontSize:
+                "clamp(4.5rem, 16vw, 11rem)",
+            }}
           >
-            <span className="block">{brand.nameDevanagari[0]}</span>
-            <span className="block">{brand.nameDevanagari[1]}</span>
+            <span className="block">
+              {brand.nameDevanagari[0]}
+            </span>
+
+            <span className="block">
+              {brand.nameDevanagari[1]}
+            </span>
           </motion.h1>
 
+          {/* TAGLINE */}
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.75 }}
+            initial={{
+              opacity: 0,
+              y: 14,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 1,
+              delay: 0.75,
+            }}
             className="mt-6 font-devbody text-xl text-marigold-light sm:text-2xl"
           >
             {brand.tagline}
           </motion.p>
 
+          {/* ENGLISH TAGLINE */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              duration: 1,
+              delay: 1,
+            }}
             className="mt-1 font-body text-xs italic text-cream-dim/70"
           >
             {brand.taglineTranslit}
           </motion.p>
 
+          {/* SCROLL */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.3 }}
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              duration: 1,
+              delay: 1.3,
+            }}
             className="mt-10 flex flex-col items-center gap-2"
           >
             <span className="h-10 w-[1px] bg-cream-dim/40" />

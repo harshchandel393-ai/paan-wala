@@ -19,6 +19,15 @@ name: "सफ़र का साथी",
         localUrl: "/songs/romantic/tujhe-dekha-to.mp3",
       },
       {
+  id: "aayega-maza-ab-barsaat-ka",
+  title: "Aayega Maza Ab Barsaat Ka",
+  artist: "Alka Yagnik, Babul Supriyo",
+  movie: "Andaaz",
+  year: 2003,
+  youtubeId: "zJRLK8Nhcns",
+  duration: "5:27"
+},
+      {
   id: 103,
   title: "Mujhse Mohabbat Ka Izhaar Karta",
   titleHi: "मुझसे मोहब्बत का इज़हार करता",

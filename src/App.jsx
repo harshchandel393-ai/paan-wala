@@ -11,6 +11,7 @@ import Menu from "./components/Menu";
 import Story from "./components/Story";
 import PaanBuilder from "./components/PaanBuilder";
 import Footer from "./components/Footer";
+import OnlineCount from "./components/OnlineCount";
 
 export default function App() {
   const playerRef = useRef(null);
@@ -27,13 +28,31 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div id="top" className="relative min-h-screen bg-night">
+      <div
+        id="top"
+        className="relative min-h-screen bg-night"
+      >
         <div className="grain-overlay" />
 
         <Navbar />
 
-        <Routes>
+        {/* =========================
+            LIVE ONLINE COUNT
+            ========================= */}
+        <div
+          style={{
+            position: "fixed",
+            top: "28px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 9999999,
+            pointerEvents: "none",
+          }}
+        >
+          <OnlineCount />
+        </div>
 
+        <Routes>
           {/* HOME */}
           <Route
             path="/"
@@ -58,13 +77,11 @@ export default function App() {
               />
             }
           />
-
         </Routes>
 
         <MusicPlayer
           onPlayerReady={handlePlayerReady}
         />
-
       </div>
     </BrowserRouter>
   );

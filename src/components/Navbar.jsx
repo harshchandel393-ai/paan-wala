@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { nav } from "../data/content";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => {
@@ -16,6 +20,47 @@ export default function Navbar() {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+
+    // All navbar links are homepage sections
+    if (href.startsWith("#")) {
+      const sectionId = href.substring(1);
+
+      // Already on homepage
+      if (location.pathname === "/") {
+        const section = document.getElementById(sectionId);
+
+        if (section) {
+          section.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+
+        return;
+      }
+
+      // On playlist/detail/other page
+      // Go to homepage first
+      navigate("/");
+
+      // Wait for homepage to render
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+
+        if (section) {
+          section.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 150);
+    } else {
+      navigate(href);
+    }
+  };
 
   return (
     <motion.header
@@ -37,6 +82,7 @@ export default function Navbar() {
           <a
             key={link.href}
             href={link.href}
+            onClick={(e) => handleNavClick(e, link.href)}
             className="relative pb-1 opacity-90 transition hover:opacity-100 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-marigold after:transition-all after:duration-300 hover:after:w-full"
           >
             {link.label}
